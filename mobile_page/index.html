@@ -1,38 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <!-- Import the webpage's stylesheet -->
-    <link rel="stylesheet" href="style.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  </head>  
-  <body>
+
+<head>
+  <meta charset="utf-8">
+  <!-- Import the webpage's stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://unpkg.com/tesseract.js@v2.1.0/dist/tesseract.min.js"></script>
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <h1>"Awesome work done by this" Team</h1>
+  <div id="webcamDiv">
     <section id="demos" class="invisible">
-      
       <div id="liveView" class="camView">
-        <button id="webcamButton">Enable Webcam</button>
-        <video id="webcam" autoplay playsinline muted width="640" height="480"></video>
+        <video id="webcam" autoplay playsinline muted width="100%" height="100%"></video>
         <!--  playsinline: fix for IOS-->
       </div>
     </section>
-    <button id="btn-capture" type="button" class="button">Capture Image</button>
-  <div class="play-area-sub">
-    <h3>The Capture</h3>
-    <canvas id="capture" width="640" height="480"></canvas>
+    <button id="btn-capture" type="button" class="button capture">Capture</button>
   </div>
 
-  <div id="captureImg" class="play-area-sub">
+  <div class="capture-div">
+    <canvas class="hidden" id="capture" width="640" height="480"></canvas>
+  </div>
+
+  <div id="captureImg" class="play-area-sub" hidden>
     <h3>Edge Detector</h3>
   </div>
 
-  <button id="btn-check" type="button" class="button">Check Image</button>
-  <div id="result">
-
+  <div class="check-retake-div">
+    <button id="btn-check" type="button" class="button half hidden disable">Extract info</button>
+    <button id="btn-retake" type="button" class="button half hidden">Retake a photo</button>
   </div>
-  Threshold:<input type="input" id="threshold" value="30"><br><span class="help">(Hit enter or return after changing the value)</span>
 
-    <script src="https://unpkg.com/tesseract.js@v2.1.0/dist/tesseract.min.js"></script>
-    <script src="script.js" defer></script>
-    <script src="edgeDetector.js" defer></script>
-  </body>
+  <div id="result">
+  </div>
+</body>
+
 </html>

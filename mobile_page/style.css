@@ -6,7 +6,8 @@ body {
   
   h1 {
     font-style: italic;
-    color: #FF6F00;
+    color: #0300ff66;
+    text-align: center;
   }
   
   video {
@@ -48,4 +49,31 @@ body {
     border: 1px dashed #fff;
     z-index: 1;
     position: absolute;
+  }
+
+  .button {
+    font-size: 25px;
+  }
+
+  .capture {
+    width: 100%;
+    height: 50px;
+  }
+  .hidden {
+    display: none;
+  }
+
+  .capture-div {
+    text-align: center;
+    margin-top: 15%;
+    margin-bottom: 5%;
+  }
+
+  .half {
+    width: 45%;
+  }
+
+  .check-retake-div {
+    text-align: center;
+    margin-top: 20px;
   }
