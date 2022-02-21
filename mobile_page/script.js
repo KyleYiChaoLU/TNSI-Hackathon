@@ -48,6 +48,7 @@ $(document).ready(function(){
     // Activate the webcam stream.
     navigator.mediaDevices.getUserMedia(constraints).then(function (stream) {
       console.log(stream);
+      this.vidoStream = stream
       video.srcObject = stream;
       video.addEventListener('loadeddata', predictWebcam);
 
@@ -153,7 +154,7 @@ $(document).ready(function(){
 
   function setValueToInputField (value) {
     var resultValue = getCardNumberLine(value);
-    inputCardNo.value = resultValue;//.replace(/ /g,'');
+    inputCardNo.value = resultValue.replace(/\D/g, '');
     resultDiv.classList.remove("hidden");
   }
 
@@ -288,4 +289,24 @@ $(document).ready(function(){
       this.rawctx.beginPath();
     };
   }
+
+  $('#btn-send').on('click', function(){
+    var data = $('#cardNo').val().replace(/ /g,'');
+    var url = $(this).attr('data-url') + data;
+
+    $.get( url, function() {
+      clearAllandThumbUp();
+      alert("Success!");
+    });
+    //clearAllandThumbUp();
+  });
+
+  function clearAllandThumbUp() {
+    vidoStream.getVideoTracks()[0].stop();
+    var mainDiv = document.getElementById('mainDiv');
+    var thumbUp = document.getElementById('thumbUp');
+    mainDiv.innerHTML = '';
+    thumbUp.classList.remove("hidden");
+  }
+
 });
