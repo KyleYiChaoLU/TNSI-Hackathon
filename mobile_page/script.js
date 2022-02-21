@@ -7,8 +7,12 @@ $(document).ready(function(){
   const demosSection = document.getElementById('demos');
   var btnResult = document.getElementById("btn-check");
   var btnRetake = document.getElementById("btn-retake");
+  var progressDiv = document.getElementById("progressDiv");
+  var progressBar = document.getElementById("progress");
   var snapshot = null;
   var result = document.getElementById("result");
+  var resultDiv = document.getElementById("resultDiv");
+  var inputCardNo = document.getElementById("cardNo");
   var captureImgDiv = document.getElementById("captureImg");
   var edgeDetector = new edgeDetector();
   const threshold = 26;
@@ -64,6 +68,7 @@ $(document).ready(function(){
       var img = new Image();
 
       ctx.drawImage(video, 0, 0, capture.width, capture.height);
+      //ctx.drawImage(video, 0, -300, capture.width, capture.height);
       img.id = "snapshot";
       img.src = capture.toDataURL("image/png");
       img.width = 640;
@@ -85,21 +90,27 @@ $(document).ready(function(){
     console.log("btnResult clicked");
     initEdgeDetector();
     var rawData = document.getElementById('layer');
+    //var rawData = document.getElementById('rawData');
     var srcData = rawData.toDataURL("image/png");
-    Tesseract.recognize(
-      //snapshot.src,
-      srcData,
-      'eng+por',
-      {
-        logger: m => console.log(m),
-        'psm': 8
-      }
-    ).then(({ data: { text } }) => {
+
+    var worker = Tesseract.createWorker({
+      logger: m => updateProgress(m),
+    });
+
+    const lang = 'eng+por';
+    (async () => {
+      await worker.load();
+      await worker.loadLanguage(lang);
+      await worker.initialize(lang);
+      const { data: { text } } = await worker.recognize(srcData,{
+        psm: 6,
+        init_oem: Tesseract.OEM.TESSERACT_LSTM_COMBINED,
+        tessedit_char_whitelist: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',
+      });
       console.log(text);
-      var p = document.createElement('p');
-      p.innerHTML = text;
-      result.appendChild(p);
-    })
+      setValueToInputField(text);
+      await worker.terminate();
+    })();
   }
 
   function retakePhoto () {
@@ -108,8 +119,44 @@ $(document).ready(function(){
     btnResult.classList.add("hidden");
     btnRetake.classList.add("hidden");
     captureImgDiv.innerHTML = "";
-    result.innerHTML = "";
+    resultDiv.classList.add("hidden");
+    inputCardNo.value = null;
   }
+
+  function updateProgress(message) {
+
+    if (message.status == "recognizing text") {
+      console.log(message.progress * 100);
+      if (message.progress < 1) {
+        progressDiv.classList.remove("hidden");
+        progressBar.value = message.progress * 100;
+      } else {
+        progressDiv.classList.add("hidden");
+        progressBar.value = 0;
+      }
+    }
+  }
+
+
+  function getCardNumberLine(text) {
+    var textArray = text.split(/\r\n|\n\r|\n|\r/);
+    var maxlen = 0;
+    var maxindex = 0;
+    for (i = 0; i < textArray.length; i++) {
+      if (textArray[i].length > maxlen) {
+        maxlen = textArray[i].length;
+        maxindex = i;
+      }
+    }
+    return textArray[maxindex];
+  }
+
+  function setValueToInputField (value) {
+    var resultValue = getCardNumberLine(value);
+    inputCardNo.value = resultValue;//.replace(/ /g,'');
+    resultDiv.classList.remove("hidden");
+  }
+
 
   function initEdgeDetector () {
     edgeDetector.imgElement = document.getElementById('snapshot');
