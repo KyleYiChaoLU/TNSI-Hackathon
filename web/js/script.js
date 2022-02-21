@@ -10,7 +10,7 @@ function generateQRCode() {
         type: 'url',
         url: url
     });
-    $("#qrCodeLink").attr("href", url)
+    $("#qrCodeLink").attr("href", url);
 }
 
 function setCardNumber(cardNumber) {
