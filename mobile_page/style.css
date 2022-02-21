@@ -77,3 +77,32 @@ body {
     text-align: center;
     margin-top: 20px;
   }
+
+  #result {
+    white-space:pre-line;
+  }
+
+  .result-div {
+    text-align: center;
+    margin: 5px;
+  }
+  .result-div label{
+    font-size: 20px;
+    font-weight: bold;
+  }
+  #btn-send {
+    height: 50px;
+    margin: 5px;
+   }
+
+   .card-input {
+    height: 40px;
+    width: 35%;
+    font-size: 30px;
+   }
+
+   .progress-div {
+    font-size: 30px; 
+    text-align: center;
+    margin: 5%;
+   }
