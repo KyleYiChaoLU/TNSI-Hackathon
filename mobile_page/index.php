@@ -12,7 +12,7 @@
 
 <body>
   <h1>"Awesome work done by this" Team </h1>
-  <h1 id="thumbUp" class="hidden" style="font-size: 23rem" data-text="ðŸ‘�">ðŸ‘�</h1>
+  <h1 id="thumbUp" class="hidden" style="font-size: 23rem" data-text="&#x1F44D;">&#x1F44D;</h1>
   <div id="mainDiv">
     <div id="webcamDiv">
       <section id="demos" class="invisible">
