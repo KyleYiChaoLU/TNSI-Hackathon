@@ -293,10 +293,12 @@ $(document).ready(function(){
   $('#btn-send').on('click', function(){
     var data = $('#cardNo').val().replace(/ /g,'');
     var url = $(this).attr('data-url') + data;
-
-    $.get( url, function() {
-      clearAllandThumbUp();
-      alert("Success!");
+    
+    $.get( url, function(data, status) {
+         if (data=="ok") {
+             clearAllandThumbUp();
+             alert("Success!");
+      }
     });
     //clearAllandThumbUp();
   });

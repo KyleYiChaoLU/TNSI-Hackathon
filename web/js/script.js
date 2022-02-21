@@ -1,12 +1,12 @@
-
+const IP="192.168.1.105";
 const serverUrl = "http://localhost:8080";
-const mobilePageUrl = "localhost:8080/mobile_page/index.html";
+const mobilePageUrl = "http://"+IP+":8080/TNSI-Hackathon/mobile_page/index.php";
 var id = "1234";
 
 function generateQRCode() {
     $("#qrCode").ClassyQR({
         type: 'url',
-        url: serverUrl + "?id=" + id
+        url: mobilePageUrl + "?id=" + id
     });
 }
 

@@ -12,7 +12,7 @@
 
 <body>
   <h1>"Awesome work done by this" Team </h1>
-  <h1 id="thumbUp" class="hidden" style="font-size: 23rem" data-text="👍">👍</h1>
+  <h1 id="thumbUp" class="hidden" style="font-size: 23rem" data-text="ðŸ‘�">ðŸ‘�</h1>
   <div id="mainDiv">
     <div id="webcamDiv">
       <section id="demos" class="invisible">
@@ -48,7 +48,7 @@
       <label>Card Number
         <input id="cardNo" type="text" class="card-input">
       </label>
-      <button id="btn-send" data-url="/test/?siteId=123&carno=" type="button" class="button half">Confirm</button>
+      <button id="btn-send" data-url="<?php echo '../web/setId.php?id='.$_GET['id'].'&cardNumber='; ?>" type="button" class="button half">Confirm</button>
     </div>
   </div>
 </body>
