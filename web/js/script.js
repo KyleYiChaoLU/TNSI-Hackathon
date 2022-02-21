@@ -1,6 +1,6 @@
-const IP="192.168.1.105";
+const IP="https://e0fe-121-45-84-139.ngrok.io";
 const serverUrl = "http://localhost:8080";
-const mobilePageUrl = "http://"+IP+":8080/TNSI-Hackathon/mobile_page/index.php";
+const mobilePageUrl = IP+"/TNSI-Hackathon/mobile_page/index.php";
 var id = "1234";
 
 function generateQRCode() {
