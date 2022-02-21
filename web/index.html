@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width">
+
+<title>Speech color changer</title>
+
+<script src="./js/jquery-3.6.0.min.js"></script>
+<script src="./js/jquery.classyqr.min.js"></script>
+<script src="./js/script.js"></script>
+<script src="./js/speechToText.js"></script>
+
+
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/style.css">
+<!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="header">
+        <img class="" src="img/advam.png">
+    </div>
+    <hr>
+    <h2>Card Payment</h2>
+
+
+    <div style="float: right; width:200px; height: 410px;" >
+        <h6>Speech Recognition</h6>
+        <div id="speechToTextButton"><img id="speechToTextButtonIcon" src="img/mic.png" alt="mic" style="width:60px;" onclick="speechMode()"></div>
+        <hr>
+        <h6>Scan Your Card On Mobile</h6>
+        <div id="cameraButton"><img src="img/camera.png" alt="camera" style="width:60px;" onclick="scanMode()"></div>
+        <div id="scanButton"><img src="#" id="qrCode" alt="" style="width:200px;" /></div>
+    </div>
+    <div style="height: 410px;">
+        <form id="paymentForm" action="">
+            <div>
+                <label for="cardNumber">Card Number:</label> <input
+                    type="text" id="cardNumber" name="cardNumber" />
+                <div class="iconDiv">
+                    <img class="speechIcon" src="img/mic.png" alt="speech"
+                        id="recordCardNumberMic"
+                        onclick="recordCardNumber()">
+                    <div class="speechToText"></div>
+                </div>
+            </div>
+            <br>
+            <div>
+                <label for="cardHolderName">Card Holder Name:</label> <input
+                    type="text" id="cardHolderName"
+                    name="cardHolderName" />
+                <div class="iconDiv">
+                    <img class="speechIcon" src="img/mic.png" alt="speech"
+                        id="recordCardHolderNameMic"
+                        onclick="recordCardHolderName()">
+                    <div class="speechToText"></div>
+                </div>
+            </div>
+            <br>
+            <div>
+                <label for="expiredDate">Expired Date:</label> <input
+                    type="text" id="expiredDate" name="expiredDate" />
+                <div class="iconDiv">
+                    <img class="speechIcon" src="img/mic.png" alt="speech"
+                        id="recordExpiredDateMic"
+                        onclick="recordExpiredDate()">
+                    <div class="speechToText"></div>
+                </div>
+            </div>
+            <br>
+            <div>
+                <label for="cvv">CVV:</label> <input type="text"
+                    id="cvv" name="cvv" />
+                <div class="iconDiv">
+                    <img class="speechIcon" src="img/mic.png" alt="speech"
+                        id="recordCvvMic" onclick="recordCvv()">
+                    <div class="speechToText"></div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div>
+                <button type="button" class="btn btn-primary">Pay</button>
+            </div>
+        </form>
+    </div>
+    <div id="error"></div>
+    <hr>
+
+    <div>
+        <img class="" src="img/tns.png" width="200px;">
+        <p style="float: right;">Powered by "Awesome work done by
+            this" Team</p>
+    </div>
+
+</body>
+</html>

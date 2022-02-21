@@ -1,0 +1,66 @@
+body, html {
+	margin: 0;
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	height: inherit;
+	overflow: hidden;
+	max-width: 800px;
+	margin: 0 auto;
+}
+
+.header {
+	padding: 10px;
+	text-align: center;
+}
+
+.header img{
+	width:300px;
+}
+
+h2, #paymentForm {
+	font-family: sans-serif;
+	text-align: center;
+	padding: 15px;
+}
+
+label {
+	display: inline-block;
+	width: 150px;
+	text-align: left;
+	font-weight: bold;
+}
+
+.iconDiv {
+	width: 100px;
+	padding-top: 5px;
+	display: inline-block;
+	text-align: left;
+}
+
+.speechIcon {
+	width: 20px;
+	text-align: bottom;
+}
+
+.speechToText {
+	display: inline-block;
+	color: green;
+}
+
+#speechToTextButton, #cameraButton, h6{
+	text-align: center;
+}
+
+#error{
+	color:red;
+}
+
+img{
+	  cursor:pointer;
+	
+}
