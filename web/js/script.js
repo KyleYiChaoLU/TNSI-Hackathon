@@ -2,12 +2,15 @@ const IP="https://e0fe-121-45-84-139.ngrok.io";
 const serverUrl = "http://localhost:8080";
 const mobilePageUrl = IP+"/TNSI-Hackathon/mobile_page/index.php";
 var id = "1234";
+var mode="";
 
 function generateQRCode() {
+    var url = mobilePageUrl + "?id=" + id;
     $("#qrCode").ClassyQR({
         type: 'url',
-        url: mobilePageUrl + "?id=" + id
+        url: url
     });
+    $("#qrCodeLink").attr("href", url)
 }
 
 function setCardNumber(cardNumber) {
@@ -16,6 +19,7 @@ function setCardNumber(cardNumber) {
 
 
 function scanMode() {
+    mode="scan";
     $("#error").html("");
     $("#speechToTextButtonIcon").attr("src", "img/mic.png");
     stopRecognition();
@@ -33,6 +37,7 @@ function resetScanMode(){
 }
 
 function speechMode() {
+    mode="speech";
     $("#qrCode").hide();
     $("#cameraButton").show();
     $(".iconDiv").show();
@@ -53,7 +58,9 @@ function loadScanResult(reset=0) {
             setCardNumber(data);
             resetScanMode();
         } else {
-            setTimeout(loadScanResult, 5000);
+            if(mode=="scan"){
+               setTimeout(loadScanResult, 5000);
+            }
         }
     });
 }
